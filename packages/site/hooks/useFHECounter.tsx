@@ -63,6 +63,10 @@ function getFHECounterByChainId(
   const entry =
     FHECounterAddresses[chainId.toString() as keyof typeof FHECounterAddresses];
 
+  if(!entry) {
+    return { abi: FHECounterABI.abi };
+  }
+
   if (!("address" in entry) || entry.address === ethers.ZeroAddress) {
     return { abi: FHECounterABI.abi, chainId };
   }
