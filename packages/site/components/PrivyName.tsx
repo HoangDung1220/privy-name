@@ -48,25 +48,36 @@ export const PrivyName = () => {
   };
 
   const [tab, setTab] = useState<number>(TABS.HOME);
-  const [fheName, setFheName] = useState<string>("");
-  const [namePrice, setNamePrice] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [namePrice, setNamePrice] = useState<string>("0");
   const [myNames, setMyNames] = useState<MyName[]>([]);
 
-  const buttonClass =
-    "inline-flex items-center justify-center rounded-xl bg-black px-4 py-4 font-semibold text-white shadow-sm " +
-    "transition-colors duration-200 hover:bg-blue-700 active:bg-blue-800 " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 " +
-    "disabled:opacity-50 disabled:pointer-events-none";
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+
+    if (value.length <= 2 && value.length > 0) {
+      setNamePrice("0.0003");
+    } else if (value.length >= 2 && value.length <= 5) {
+      setNamePrice("0.0002");
+    } else if (value.length > 5) {
+      setNamePrice("0.0001");
+    } else {
+      setNamePrice("0");
+    }
+  };
 
   if (!isConnected) {
     return (
       <div className="h-full mx-auto flex items-center justify-center">
         <button
-          className={`h-14 w-[500px] flex items-center justify-center zama-bg rounded-lg mt-2 mb-12 cursor-pointer text-black cursor-not-allowed`}
+          className={`h-14 w-[500px] flex items-center justify-center zama-bg rounded-lg mt-2 mb-12 cursor-pointer text-black`}
           disabled={isConnected}
           onClick={connect}
         >
-          <span className="text-white p-6 bg-black rounded-2xl font-medium text-gray-800">Connect to MetaMask</span>
+          <span className="text-white p-6 bg-black rounded-2xl font-medium text-gray-800">
+            Connect to MetaMask
+          </span>
         </button>
       </div>
     );
@@ -112,12 +123,14 @@ export const PrivyName = () => {
 
             <div className="flex flex-row items-center px-4 py-2 gap-4 w-[500px] h-[42px] bg-white rounded-lg text-[16px] text-gray-400 mt-12 border border-gray-300 relative">
               <input
-                id="fheNameInput"
+                id="nameInput"
                 className="w-full h-full border-none outline-none text-gray-400 text-[16px] rounded-lg"
                 placeholder="name.zama"
+                maxLength={10}
+                onChange={(e) => handleChangeName(e)}
               />
-              <span className="absolute -z-10">{fheName}</span>
-              {fheName && <div className="ml-[-18px] text-gray-600">.zama</div>}
+              <span className="absolute -z-10">{name}</span>
+              {name && <div className="ml-[-18px] text-gray-600">.zama</div>}
             </div>
 
             <div className="flex items-center justify-between px-4 py-2 w-[500px] h-[42px] rounded-lg text-[16px] text-gray-400 mt-3 border border-gray-300">
@@ -126,7 +139,7 @@ export const PrivyName = () => {
             </div>
 
             <div
-              className={`h-14 w-[500px] flex items-center justify-center zama-bg rounded-lg mt-2 mb-12 cursor-pointer text-black ${"bg-gray-400 cursor-not-allowed"}`}
+              className={`h-14 w-[500px] flex items-center justify-center zama-bg rounded-lg mt-2 mb-12 text-black ${name.length === 0 ? "bg-gray-400 cursor-not-allowed" : "bg-red-500 cursor-pointer"}`}
             >
               Create name
             </div>
