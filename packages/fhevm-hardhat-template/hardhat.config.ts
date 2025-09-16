@@ -33,21 +33,21 @@ const config: HardhatUserConfig = {
     excludeContracts: [],
   },
   networks: {
-    hardhat: {
-      accounts: {
-        mnemonic: MNEMONIC,
-      },
-      chainId: 31337,
-    },
-    anvil: {
-      accounts: {
-        mnemonic: MNEMONIC,
-        path: "m/44'/60'/0'/0/",
-        count: 10,
-      },
-      chainId: 31337,
-      url: "http://localhost:8545",
-    },
+    // hardhat: {
+    //   accounts: {
+    //     mnemonic: MNEMONIC,
+    //   },
+    //   chainId: 31337,
+    // },
+    // anvil: {
+    //   accounts: {
+    //     mnemonic: MNEMONIC,
+    //     path: "m/44'/60'/0'/0/",
+    //     count: 10,
+    //   },
+    //   chainId: 31337,
+    //   url: "http://localhost:8545",
+    // },
     sepolia: {
       url: INFURA_API,
       accounts: [MNEMONIC],
