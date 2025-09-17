@@ -21,7 +21,7 @@ import type {
 
 export interface FHECounterInterface extends Interface {
   getFunction(
-    nameOrSignature: "decrement" | "getCount" | "increment"
+    nameOrSignature: "decrement" | "getCount" | "increment" | "protocolId"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -33,10 +33,15 @@ export interface FHECounterInterface extends Interface {
     functionFragment: "increment",
     values: [BytesLike, BytesLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "protocolId",
+    values?: undefined
+  ): string;
 
   decodeFunctionResult(functionFragment: "decrement", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getCount", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "increment", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
 }
 
 export interface FHECounter extends BaseContract {
@@ -96,6 +101,8 @@ export interface FHECounter extends BaseContract {
     "nonpayable"
   >;
 
+  protocolId: TypedContractMethod<[], [bigint], "view">;
+
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
@@ -117,6 +124,9 @@ export interface FHECounter extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "protocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
 
   filters: {};
 }
