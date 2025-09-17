@@ -1,1 +1,2 @@
-export const ALCHEMY_API: string = process.env.NEXT_PUBLIC_ALCHEMY_API || '';
+export const ALCHEMY_API = process.env.NEXT_PUBLIC_ALCHEMY_API || '';
+export const CONTRACT_ADDRESS: string = "0x56C6F8ed6869ad332c279Aa67bCB64EC37519998";
