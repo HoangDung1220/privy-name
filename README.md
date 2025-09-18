@@ -1,10 +1,27 @@
-# FHEVM React Template
+# FHEVM React Template – Privy Name dApp
 
-The FHEVM React Template is an ultra-minimal React project for building and running an FHEVM-enabled dApp.
-It works alongside the [fhevm-hardhat-template](https://github.com/zama-ai/fhevm-hardhat-template)
-and provides a simple development frontend for interacting with the `FHECounter.sol` contract.
+This project is a minimal React dApp template for interacting with the **`FHEPrivyName.sol`** contract using Zama’s FHEVM.  
+It demonstrates how to build a privacy-preserving application on top of FHEVM, where **names are encrypted on-chain** and can only be decrypted by authorized parties.
 
-This template also illustrates how to run your FHEVM-dApp on both Sepolia as well as a local Hardhat Node (much faster).
+It works together with the [fhevm-hardhat-template](https://github.com/zama-ai/fhevm-hardhat-template) for contract deployment, and provides a simple frontend to test your encrypted-name dApp on both **Sepolia testnet** and a **local Hardhat node**.
+
+---
+
+## 🔐 What is FHEPrivyName?
+
+The `FHEPrivyName` smart contract allows users to:
+
+- **Create encrypted names** on-chain using Fully Homomorphic Encryption (FHE).  
+- **Names are stored as `euint256`** and cannot be publicly read in plaintext.  
+- The contract ensures **only the creator and the contract itself** can decrypt the data.  
+- **Pay ETH** when creating a name (value is logged in the `NameCreated` event).  
+- **Retrieve list of names** created by the caller (still encrypted).  
+- **Query name information** by ID.  
+- **Track total number of names** created.  
+- **Check contract balance** (ETH stored in contract).  
+- **Withdraw balance** (only contract owner can withdraw all ETH).  
+
+---
 
 ## Features
 
@@ -21,10 +38,10 @@ This template also illustrates how to run your FHEVM-dApp on both Sepolia as wel
 
 Follow the step-by-step guide in the [Hardhat + MetaMask](https://docs.metamask.io/wallet/how-to/run-devnet/) documentation to set up your local devnet using Hardhat and MetaMask.
 
-- Name: Hardhat
-- RPC URL: http://127.0.0.1:8545
-- Chain ID: 31337
-- Currency symbol: ETH
+Name: Hardhat
+RPC URL: http://127.0.0.1:8545
+Chain ID: 31337
+Currency symbol: ETH
 
 ## Install
 
@@ -64,7 +81,7 @@ npx hardhat node --verbose
 # Default RPC: http://127.0.0.1:8545  | chainId: 31337
 ```
 
-3. Deploy `FHECounter` to the local node:
+3. Deploy `FHEPrivyName` to the local node:
 
 ```sh
 # still in packages/fhevm-hardhat-template
@@ -91,7 +108,7 @@ npx hardhat node --verbose
 2. From the `<root>/packages/site` run
 
 ```sh
-npm run dev:mock
+npm run dev
 ```
 
 3. In your browser open `http://localhost:3000`
@@ -131,19 +148,6 @@ To fix the view function result mismatch:
 1. Restart the entire browser. MetaMask stores its cache in the extension's memory, which cannot be cleared by simply clearing the browser cache or using MetaMask's built-in cache cleaning options.
 
 By following these steps, you can ensure that MetaMask syncs correctly with your Hardhat node and avoid potential issues related to nonces and cached view function results.
-
-## Project Structure Overview
-
-### Key Files/Folders
-
-* **`<root>/packages/site/fhevm`**: This folder contains the essential hooks needed to interact with FHEVM-enabled smart contracts. It is meant to be easily copied and integrated into any FHEVM + React project.
-
-* **`<root>/packages/site/hooks/useFHECounter.tsx`**: A simple React custom hook that demonstrates how to use the `useFhevm` hook in a basic use case, serving as an example of integration.
-
-### Secondary Files/Folders
-
-* **`<root>/packages/site/hooks/metamask`**: This folder includes hooks designed to manage the MetaMask Wallet provider. These hooks can be easily adapted or replaced to support other wallet providers, following the EIP-6963 standard,
-* Additionally, the project is designed to be flexible, allowing developers to easily replace `ethers.js` with a more React-friendly library of their choice, such as `Wagmi`.
 
 ## Documentation
 
