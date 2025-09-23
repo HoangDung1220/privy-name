@@ -3,8 +3,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Zama FHEVM SDK Quickstart",
-  description: "Zama FHEVM SDK Quickstart app",
+  title: "Zama FHEVM Privy Name",
+  description: "Zama FHEVM Privy Name app",
 };
 
 export default async function RootLayout({

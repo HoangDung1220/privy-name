@@ -45,27 +45,16 @@ Currency symbol: ETH
 
 ## Install
 
-### Automatic install
-
-1. Clone this repository.
-2. From the repo root, run:
-```sh
-# - git clone "https://github.com/zama-ai/fhevm-hardhat-template.git" into <root>/packages
-# - npm install
-# - auto-depoy on hardhat node
-node ./scripts/install.mjs
-```
-
 ### Manual install
 
 1. Clone this repository.
 2. From the repo root, execute the following:
 ```sh
-cd ./packages
-git clone "https://github.com/zama-ai/fhevm-hardhat-template.git"
-cd ..
 npm install
+cd packages/site
+npm run dev
 ```
+3.In your browser open http://localhost:3000
 
 ## Setup
 
@@ -96,28 +85,6 @@ Follows instructions in the [FHEVM documentation to setup your Hardhat project f
 # still in packages/fhevm-hardhat-template
 npx hardhat deploy --network sepolia
 ```
-
-## Run frontend in mock mode
-
-1. Start a local Hardhat node (new terminal):
-
-```sh
-npx hardhat node --verbose
-```
-
-2. From the `<root>/packages/site` run
-
-```sh
-npm run dev
-```
-
-3. In your browser open `http://localhost:3000`
-
-4. Open Metamask connect to local Hardhat node
-i. Select Add network.
-ii. Select Add a network manually.
-iii. Enter your Hardhat Network RPC URL, http://127.0.0.1:8545/ (or http://localhost:8545).
-iv. Enter your Hardhat Network chain ID, 31337 (or 0x539 in hexadecimal format).
 
 ## How to fix Hardhat Node + Metamask Errors ?
 
