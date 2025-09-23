@@ -59,10 +59,8 @@ export const PrivyName = () => {
     provider,
     chainId,
     accounts,
-    isConnected,
     ethersSigner,
     initialMockChains,
-    connect,
   } = useMetaMaskEthersSigner();
 
   const { instance: fhevmInstance, status: fhevmStatus } = useFhevm({
@@ -240,21 +238,6 @@ export const PrivyName = () => {
   // UI
   /////////////////////////////////////////////////////////////////////////////
 
-  if (!isConnected) {
-    return (
-      <div className="h-full mx-auto flex items-center justify-center">
-        <button
-          className="h-14 w-[500px] flex items-center justify-center zama-bg rounded-lg mt-2 mb-12 cursor-pointer text-black"
-          onClick={connect}
-        >
-          <span className="text-white p-6 bg-black rounded-2xl font-medium text-gray-800">
-            Connect to MetaMask
-          </span>
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="w-full h-full mt-10">
       <Toaster position="bottom-center" toastOptions={{ className: "toast" }} />
@@ -324,9 +307,9 @@ export const PrivyName = () => {
 
       {/* MY NAME TAB */}
       {tab === Tabs.MY_NAME && (
-        <div className="w-full mt-10 bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="h-full">
           {myNames.length > 0 ? (
-            <>
+            <div className="w-full mt-10 bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid grid-cols-3 bg-gray-100 text-gray-700 font-semibold px-6 py-3">
                 <div>STT</div>
                 <div>Name</div>
@@ -348,7 +331,7 @@ export const PrivyName = () => {
                   </div>
                 </div>
               ))}
-            </>
+            </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden">
               <div className="text-[20px] font-medium text-gray-800">
